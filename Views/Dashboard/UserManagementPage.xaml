@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MentorshipCompanionApp.Views.Dashboard.UserManagementPage"
+             xmlns:viewModel="clr-namespace:MentorshipCompanionApp.ViewModels"
+             xmlns:userManagement="clr-namespace:MentorshipCompanionApp.Views.Management"
+             x:DataType="viewModel:UserManagementViewModel"
+             Title="{Binding Title}">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to User Management"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
+
+</ContentPage>

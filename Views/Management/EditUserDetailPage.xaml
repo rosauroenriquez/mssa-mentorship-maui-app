@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MentorshipCompanionApp.Views.Management.EditUserDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:MentorshipCompanionApp.Models"
+    xmlns:viewModel="clr-namespace:MentorshipCompanionApp.ViewModels"
+    Title="Edit User Detail"
+    x:DataType="viewModel:EditUserDetailViewModel"
+    >
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,*">
+            <ActivityIndicator
+                Grid.ColumnSpan="3"
+                HorizontalOptions="FillAndExpand"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="CenterAndExpand" />
+            <BoxView
+                Grid.RowSpan="2"
+                BackgroundColor="{StaticResource Secondary}"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Color="{StaticResource Primary}" />
+
+            <Border
+                Margin="0,8,0,0"
+                HeightRequest="160"
+                HorizontalOptions="Center"
+                Stroke="{StaticResource Secondary}"
+                StrokeShape="RoundRectangle 80"
+                StrokeThickness="6"
+                VerticalOptions="Center"
+                WidthRequest="160">
+                <!--  Edit Source Later When Actual Image is available  -->
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="160"
+                    HorizontalOptions="Center"
+                    Source="user.png"
+                    VerticalOptions="Center"
+                    WidthRequest="160" />
+            </Border>
+
+            <Label
+                Grid.Row="1"
+                Margin="0,0,0,8"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Style="{StaticResource LargeLabel}"
+                TextColor="White">
+                <Label.Text>
+                    <MultiBinding StringFormat="{}{0} {1}">
+                        <Binding Path="UserProfile.FirstName" />
+                        <Binding Path="UserProfile.LastName" />
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+
+            <VerticalStackLayout
+                Grid.Row="2"
+                Padding="10"
+                Spacing="10">
+
+
+                <VerticalStackLayout>
+                    <Label Style="{StaticResource SmallLabel}" Text="First Name" />
+                    <Entry IsEnabled="{Binding IsEditEnabled}" Text="{Binding UserProfile.FirstName}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Style="{StaticResource SmallLabel}" Text="Last Name" />
+                    <Entry IsEnabled="{Binding IsEditEnabled}" Text="{Binding UserProfile.LastName}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Style="{StaticResource SmallLabel}" Text="LinkedIn" />
+                    <Entry IsEnabled="{Binding IsEditEnabled}" Text="{Binding UserProfile.LinkedInURL}" />
+                </VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <Label
+                        Style="{StaticResource SmallLabel}"
+                        Text="Reset Password"
+                        VerticalOptions="Center" />
+                    <CheckBox IsEnabled="{Binding IsEditEnabled}" IsChecked="{Binding IsChecked}" />
+                </HorizontalStackLayout>
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto">
+                    <Button
+                        Grid.Column="0"
+                        Margin="10"
+                        Command="{Binding EditCommand}"
+                        HorizontalOptions="EndAndExpand"
+                        Text="Edit" />
+                    <Button
+                        Grid.Column="1"
+                        Margin="10"
+                        Command="{Binding SaveCommand}"
+                        HorizontalOptions="StartAndExpand"
+                        Text="Save" />
+                </Grid>
+
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MentorshipCompanionApp.Views.Management.EditUserPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:MentorshipCompanionApp.Models"
+    xmlns:viewModel="clr-namespace:MentorshipCompanionApp.ViewModels"
+    Title="Search Profile"
+    x:DataType="viewModel:EditUserPageViewModel">
+
+    <Grid
+        ColumnDefinitions="*,*"
+        ColumnSpacing="5"
+        RowDefinitions="Auto,*"
+        RowSpacing="0">
+        <SearchBar
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="8,8,20,8"
+            Placeholder="Search by Name" 
+            HeightRequest="30"
+            Text="{Binding SearchName}"
+            SearchCommand="{Binding GetPeopleCommand}"
+            SearchCommandParameter="name"/>
+        <!--<Button
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="8"
+            Command="{Binding GetPeopleCommand}"
+            HorizontalOptions="End"
+            ImageSource="search.png"
+            IsEnabled="{Binding IsNotBusy}"
+            MaximumWidthRequest="120"
+            Text="Search" />-->
+
+        <Picker
+            Grid.Row="0"
+            Grid.Column="0"
+            HeightRequest="30"
+            Margin="130,8,8,8"            
+            HorizontalOptions="StartAndExpand"
+            ItemsSource="{Binding Roles}"
+            MinimumWidthRequest="100"
+            
+            SelectedIndex="{Binding SelectedIndex}"
+            SelectedItem="{Binding SelectedRole}" 
+            SelectedIndexChanged="Picker_SelectedIndexChanged">
+        </Picker>
+        <Label
+            Margin="8"
+            HorizontalOptions="Start"
+            Style="{StaticResource MediumLabel}"
+            Text="Search by Role"
+            VerticalOptions="Center" />
+        <RefreshView
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Command="{Binding GetPeopleCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView
+                Background="Transparent"
+                ItemsSource="{Binding People}"
+                SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <StackLayout
+                        HeightRequest="200"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="200">
+                        <Image
+                            Aspect="AspectFill"
+                            HorizontalOptions="CenterAndExpand"
+                            Source="mentorshipicon.png"
+                            VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:UserProfile">
+                        <Grid Padding="10">
+                            <Frame
+                                Padding="0"
+                                HeightRequest="75"
+                                Style="{StaticResource CardView}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:EditUserPageViewModel}}, Path=GoToEditDetailCommand}" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <Grid Padding="0" ColumnDefinitions="75,*">
+                                    <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="75"
+                                        Source="user.png"
+                                        WidthRequest="75" />
+                                    <VerticalStackLayout
+                                        Grid.Column="1"
+                                        Padding="10"
+                                        VerticalOptions="Center">
+                                        <Label Style="{StaticResource LargeLabel}">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="FirstName" />
+                                                    <Binding Path="LastName" />
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Style="{StaticResource MediumLabel}" Text="{Binding JobTitle}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <ActivityIndicator
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            HorizontalOptions="FillAndExpand"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand" />
+    </Grid>
+</ContentPage>

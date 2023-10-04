@@ -1,0 +1,101 @@
+is_global = true
+build_property.TargetFramework = net7.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MentorshipCompanionApp
+build_property.ProjectDir = E:\Source\Repo\MentorshipCompanionApp\MentorshipCompanionApp\
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/Views/Dashboard/HomePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.Views.Dashboard.HomePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Dashboard\HomePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Dashboard\HomePage.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/Views/Dashboard/SettingsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.Views.Dashboard.SettingsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Dashboard\SettingsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Dashboard\SettingsPage.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/Views/Dashboard/UserManagementPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.Views.Dashboard.UserManagementPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Dashboard\UserManagementPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Dashboard\UserManagementPage.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/Views/Interaction/GoalDetailsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.Views.Interaction.GoalDetailsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Interaction\GoalDetailsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Interaction\GoalDetailsPage.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/Views/Management/AddUserPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.Views.Management.AddUserPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Management\AddUserPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Management\AddUserPage.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/Views/Management/EditUserDetailPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.Views.Management.EditUserDetailPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Management\EditUserDetailPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Management\EditUserDetailPage.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/Views/Management/EditUserPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.Views.Management.EditUserPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Management\EditUserPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Management\EditUserPage.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/Views/Management/MentorshipPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.Views.Management.MentorshipPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Management\MentorshipPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Management\MentorshipPage.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/Views/Search/SearchPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.Views.Search.SearchPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Search\SearchPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Search\SearchPage.xaml
+
+[E:/Source/Repo/MentorshipCompanionApp/MentorshipCompanionApp/Views/Startup/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MentorshipCompanionApp.Views.Startup.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Startup\LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Startup\LoginPage.xaml

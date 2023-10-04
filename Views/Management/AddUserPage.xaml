@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MentorshipCompanionApp.Views.Management.AddUserPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:addUserViewModel="clr-namespace:MentorshipCompanionApp.ViewModels"
+    x:DataType="addUserViewModel:AddUserPageViewModel"
+    Title="{Binding Title}">
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Entry
+                x:Name="UserIDEntry"
+                Margin="0,20,0,0"
+                MaximumWidthRequest="250"
+                Placeholder="User ID (Required)"
+                Text="{Binding UserID}"/>
+            <Entry
+                x:Name="EmailEntry"
+                MaximumWidthRequest="250"
+                Placeholder="Email (Required)" 
+                Text="{Binding EmailAddress}"/>
+            <Entry
+                x:Name="FirstNameEntry"
+                MaximumWidthRequest="250"
+                Placeholder="First Name (Required)" 
+                Text="{Binding FirstName}"/>
+            <Entry
+                x:Name="LastNameEntry"
+                MaximumWidthRequest="250"
+                Placeholder="Last Name (Required)"
+                Text="{Binding LastName}"/>
+            <Entry
+                x:Name="LinkedInEntry"
+                MaximumWidthRequest="250"
+                Placeholder="LinkedIn URL (Required)" 
+                Text="{Binding LinkedInURL}"/>
+            <Picker
+                Title="Choose an MSSA Role (Required)"
+                MaximumWidthRequest="250"
+                ItemsSource="{Binding Role}"
+                SelectedItem="{Binding SelectedRole}"/>
+            <Entry
+                x:Name="JobTitleEntry"
+                MaximumWidthRequest="250"
+                Placeholder="Job Title" 
+                Text="{Binding JobTitle}"/>
+            <Grid ColumnDefinitions="1*,1*">
+                <Button
+                    Grid.Column="0"
+                    HorizontalOptions="End"
+                    MinimumWidthRequest="100"
+                    Command="{Binding AddUserCommand}"
+                    Text="Add User" />
+                <Button
+                    Grid.Column="1"
+                    HorizontalOptions="Start"
+                    MinimumWidthRequest="100"
+                    Command="{Binding ClearCommand}"
+                    Text="Cancel" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

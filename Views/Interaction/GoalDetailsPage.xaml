@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MentorshipCompanionApp.Views.Interaction.GoalDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:MentorshipCompanionApp.Models"
+    xmlns:viewModel="clr-namespace:MentorshipCompanionApp.ViewModels"
+    Title="GoalDetailsPage"
+    x:DataType="viewModel:GoalDetailsPageViewModel">
+    <VerticalStackLayout>
+        <Frame Margin="10">
+            <Grid RowDefinitions="Auto,*">
+                <Label
+                    Padding="5"
+                    Style="{StaticResource MediumLabel}"
+                    Text="My Goal" />
+                <Label
+                    Grid.Row="1"
+                    Padding="5"
+                    Style="{StaticResource LargeLabel}"
+                    Text="{Binding Goal.GoalName}" />
+            </Grid>
+        </Frame>
+        <Frame Margin="10">
+            <StackLayout Spacing="10">
+                <Label Style="{StaticResource MediumLabel}" Text="Status : " />
+                <Label Style="{StaticResource MediumLabel}" Text="{Binding Goal.Status}" />
+                <Editor
+                    x:Name="MyEditor"
+                    Margin="10"
+                    AutoSize="TextChanges"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    MinimumHeightRequest="150"
+                    Style="{StaticResource MediumLabel}"
+                    Text="{Binding Goal.GoalDescription}"
+                    VerticalOptions="StartAndExpand" />
+                <Grid Margin="20,5" ColumnDefinitions="*,*">
+                    <Grid Grid.Column="0" ColumnDefinitions="Auto,*">
+                        <Label Style="{StaticResource SmallLabel}" Text="Date Created: " />
+                        <Label
+                            Grid.Column="1"
+                            Style="{StaticResource SmallLabel}"
+                            Text="{Binding Goal.GoalDate, StringFormat='{0:MM/dd/yyyy}'}" />
+                    </Grid>
+                    <Grid Grid.Column="1" ColumnDefinitions="*,Auto">
+                        <Label
+                            HorizontalOptions="End"
+                            Style="{StaticResource SmallLabel}"
+                            Text="Deadline: " />
+                        <Label
+                            Grid.Column="1"
+                            Style="{StaticResource SmallLabel}"
+                            Text="{Binding Goal.Deadline, StringFormat='{0:MM/dd/yyyy}'}" />
+                    </Grid>
+                </Grid>
+            </StackLayout>
+        </Frame>
+
+        <!--  CollectionView for Mentor Notes  -->
+        <Frame Margin="10">
+            <StackLayout>
+                <Label
+                    Margin="0,5"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    Text="Mentors" />
+                <CollectionView
+                    Grid.ColumnSpan="2"
+                    Background="Transparent"
+                    ItemsSource="{Binding MentorNotes}"
+                    SelectionMode="None">
+                    <CollectionView.EmptyView>
+                        <Label
+                            Padding="10"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource LargeLabel}"
+                            Text="No Mentor Notes"
+                            VerticalOptions="Center" />
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:ChatMessage">
+                            <Grid Padding="10">
+                                <Frame
+                                    Padding="0"
+                                    HeightRequest="200"
+                                    Style="{StaticResource CardView}"
+                                    WidthRequest="200">
+                                    <Frame.GestureRecognizers>
+                                        <!--<TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:HomePageViewModel}}, Path=GoToGoalDetailCommand}" CommandParameter="{Binding .}" />-->
+                                    </Frame.GestureRecognizers>
+                                    <Grid Padding="0" RowDefinitions="Auto, Auto">
+                                        <Image
+                                            Grid.Row="0"
+                                            Margin="5,5,20,5"
+                                            Aspect="AspectFill"
+                                            HeightRequest="100"
+                                            Source="user.png"
+                                            WidthRequest="100" />
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Padding="10"
+                                            VerticalOptions="Start">
+                                            <Label Text="{Binding ChatMessageId}" HorizontalOptions="CenterAndExpand" Style="{StaticResource MediumLabel}">
+                                                
+                                            </Label>
+                                            <Label
+                                                HorizontalOptions="CenterAndExpand"
+                                                Style="{StaticResource SmallLabel}"
+                                                Text="{Binding Content}" />
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Frame>
+
+
+    </VerticalStackLayout>
+</ContentPage>

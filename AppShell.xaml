@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MentorshipCompanionApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dashboardPages="clr-namespace:MentorshipCompanionApp.Views.Dashboard"
+    xmlns:local="clr-namespace:MentorshipCompanionApp"
+    xmlns:startupPages="clr-namespace:MentorshipCompanionApp.Views.Startup"
+    xmlns:userManagement="clr-namespace:MentorshipCompanionApp.Views.Management"
+    Shell.FlyoutBehavior="Flyout">
+
+    <!--<Shell.FlyoutHeader>
+        <Label Text="HEADER"/>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <Label Text="FOOTER"/>
+    </Shell.FlyoutFooter>-->
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate startupPages:LoginPage}"
+        FlyoutItemIsVisible="False"
+        Route="LoginPage"
+        Shell.FlyoutBehavior="Disabled" />
+
+    <FlyoutItem Title="Home" FlyoutIcon="homeicon.png">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate dashboardPages:HomePage}"
+            Route="HomePage" />
+    </FlyoutItem>
+    <FlyoutItem Title="User Management" FlyoutIcon="usermanagementicon.png">
+
+        <Tab Icon="addusericon.png" Title="Add User">
+            <ShellContent
+                Title="Add User"
+                ContentTemplate="{DataTemplate userManagement:AddUserPage}"
+                Route="AddUserPage" />
+        </Tab>
+        <Tab Icon="editusericon.png" Title="Edit User">
+            <ShellContent
+                Title="Edit User"
+                ContentTemplate="{DataTemplate userManagement:EditUserPage}"
+                Route="EditUserPage" />
+        </Tab>
+        <Tab Icon="mentorshipicon.png" Title="Add Mentor">
+            <ShellContent
+                Title="Add User"
+                ContentTemplate="{DataTemplate userManagement:MentorshipPage}"
+                Route="MentorshipPage" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Settings" FlyoutIcon="settings.png">
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate dashboardPages:SettingsPage}"
+            FlyoutItemIsVisible="True"
+            Route="SettingsPage"
+            Shell.FlyoutBehavior="Flyout" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Logout" FlyoutIcon="logout.png">
+        <ShellContent
+            Title="Login"
+            ContentTemplate="{DataTemplate startupPages:LoginPage}"
+            FlyoutItemIsVisible="False"
+            Route="LoginPage"
+            Shell.FlyoutBehavior="Disabled" />
+    </FlyoutItem>
+
+
+
+
+
+    <!--<FlyoutItem Title="Flyout Three" FlyoutIcon="{StaticResource IconThree}">
+        <ShellContent
+            Title="Three"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="ThreePage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Flyout Four" FlyoutIcon="{StaticResource IconFour}">
+        <ShellContent
+            Title="Four"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="FourPage" />
+    </FlyoutItem>-->
+
+</Shell>

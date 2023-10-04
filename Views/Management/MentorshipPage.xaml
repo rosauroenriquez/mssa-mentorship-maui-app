@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MentorshipCompanionApp.Views.Management.MentorshipPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:MentorshipCompanionApp.Models"
+    xmlns:viewModel="clr-namespace:MentorshipCompanionApp.ViewModels"
+    Title="Mentorship"
+    x:DataType="viewModel:MentorshipPageViewModel">
+    <VerticalStackLayout>
+        <Label
+            Margin="10"
+            Style="{StaticResource LargeLabel}"
+            Text="Select Student" />
+        <Grid Padding="10">
+            <Frame
+                Padding="0"
+                HeightRequest="50"
+                Style="{StaticResource CardView}">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SearchCommand}" />
+                </Frame.GestureRecognizers>
+                <Grid Padding="0" ColumnDefinitions="50,*,Auto">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="50"
+                        Source="user.png"
+                        WidthRequest="50" />
+                    <VerticalStackLayout
+                        Grid.Column="1"
+                        Padding="10"
+                        VerticalOptions="Center">
+                        <Label Style="{StaticResource MediumLabel}">
+                            <Label.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="SelectedStudent.FirstName" />
+                                    <Binding Path="SelectedStudent.LastName" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                        <Label Style="{StaticResource SmallLabel}" Text="{Binding SelectedStudent.JobTitle}" />
+                    </VerticalStackLayout>
+                    <Button
+                        Grid.Column="2"
+                        Padding="10"
+                        BackgroundColor="Transparent"
+                        BorderWidth="0"
+                        Command="{Binding SearchCommand}"
+                        ImageSource="search.png" />
+                </Grid>
+            </Frame>
+        </Grid>
+
+        <Label
+            Margin="10"
+            Style="{StaticResource LargeLabel}"
+            Text="Mentors Assigned" />
+        <Grid
+            ColumnDefinitions="*,*"
+            ColumnSpacing="5"
+            RowDefinitions="*,Auto"
+            RowSpacing="0">
+
+            <CollectionView
+                Background="Transparent"
+                ItemsSource="{Binding Mentors}"
+                SelectionMode="None"
+                Grid.ColumnSpan="2"
+                ItemsLayout="HorizontalList">
+                <CollectionView.EmptyView>
+                    <Label
+                        Padding="10"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource LargeLabel}"
+                        Text="No Mentors Found"
+                        VerticalOptions="Center" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:UserProfile">
+                        <Grid Padding="10">
+                            <Frame
+                                Padding="0"
+                                HeightRequest="200"
+                                Style="{StaticResource CardView}"
+                                WidthRequest="200">
+                                <Frame.GestureRecognizers>
+                                    <!--<TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:EditUserPageViewModel}}, Path=GoToEditDetailCommand}" CommandParameter="{Binding .}" />-->
+                                </Frame.GestureRecognizers>
+                                <Grid Padding="0" RowDefinitions="Auto, Auto">
+                                    <Image
+                                        Grid.Row="0"
+                                        Margin="5,5,20,5"
+                                        Aspect="AspectFill"
+                                        HeightRequest="100"
+                                        Source="user.png"
+                                        WidthRequest="100" />
+                                    <StackLayout
+                                        Grid.Row="1"
+                                        Padding="10"
+                                        VerticalOptions="Start">
+                                        <Label Style="{StaticResource MediumLabel}" HorizontalOptions="CenterAndExpand">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="FirstName" />
+                                                    <Binding Path="LastName" />
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Style="{StaticResource SmallLabel}" Text="{Binding JobTitle}" HorizontalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <!--<CollectionView
+                Background="Transparent"
+                ItemsSource="{Binding Mentors}"
+                SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label
+                        Padding="10"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Style="{StaticResource LargeLabel}"
+                        Text="No Mentors Found"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:UserProfile">
+                        <Grid Padding="10">
+                            <Frame
+                                Padding="0"
+                                HeightRequest="50"
+                                Style="{StaticResource CardView}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:EditUserPageViewModel}}, Path=GoToEditDetailCommand}" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <Grid Padding="0" ColumnDefinitions="50,*">
+                                    <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="50"
+                                        Source="user.png"
+                                        WidthRequest="50" />
+                                    <VerticalStackLayout
+                                        Grid.Column="1"
+                                        Padding="10"
+                                        VerticalOptions="Center">
+                                        <Label Style="{StaticResource MediumLabel}">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="FirstName" />
+                                                    <Binding Path="LastName" />
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Style="{StaticResource SmallLabel}" Text="{Binding JobTitle}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>-->
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="20"
+                Command="{Binding AddMentorCommand}"
+                HorizontalOptions="EndAndExpand"
+                ImageSource="plus_square.png"
+                Text="Add Mentor" />
+            <!--<ActivityIndicator
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="FillAndExpand"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="CenterAndExpand" />-->
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

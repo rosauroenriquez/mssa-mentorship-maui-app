@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MentorshipCompanionApp.Views.Dashboard.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:MentorshipCompanionApp.Models"
+    xmlns:viewModel="clr-namespace:MentorshipCompanionApp.ViewModels"
+    x:DataType="viewModel:HomePageViewModel">
+    <NavigationPage.TitleView>
+        <Grid ColumnDefinitions="*,*" RowDefinitions="*">
+            <Label Text="{Binding Title}" />
+            <Button
+                Grid.Column="1"
+                HorizontalOptions="EndAndExpand"
+                ImageSource="chaticon.png" />
+        </Grid>
+    </NavigationPage.TitleView>
+    <ScrollView>
+        <VerticalStackLayout>
+            <!--  Top Section: Profile Info  -->
+            <StackLayout Padding="20">
+                <!--  Profile Picture and Info  -->
+                <Grid ColumnDefinitions="Auto,*">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="200"
+                        Source="user.png"
+                        VerticalOptions="Start"
+                        WidthRequest="200" />
+                    <StackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label HorizontalOptions="StartAndExpand" Style="{StaticResource LargeLabel}">
+                            <Label.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="ActiveProfile.FirstName" />
+                                    <Binding Path="ActiveProfile.LastName" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                        <Label
+                            Style="{StaticResource MediumLabel}"
+                            Text="{Binding ActiveProfile.JobTitle}"
+                            VerticalOptions="Start" />
+                        <Label
+                            Style="{StaticResource MediumLabel}"
+                            Text="{Binding ActiveProfile.LinkedInURL}"
+                            VerticalOptions="Start" />
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+            <!--  Middle Section: Goals  -->
+            <Frame Margin="10">
+                <StackLayout>
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Label
+                            Margin="0,5"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="Goals" />
+
+                        <!--  Add Button  -->
+                        <Button
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            BackgroundColor="Transparent"
+                            BorderWidth="0"
+                            HeightRequest="20"
+                            HorizontalOptions="StartAndExpand"
+                            ImageSource="plus_square.png"
+                            VerticalOptions="Center"
+                            WidthRequest="80" />
+                    </Grid>
+
+
+                    <!--  CollectionView for Goals  -->
+                    <CollectionView
+                        x:Name="GoalsCollectionView"
+                        ItemsLayout="HorizontalList"
+                        ItemsSource="{Binding Goals}"
+                        SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Goal">
+                                <Grid Padding="10">
+                                    <Frame
+                                        Padding="0"
+                                        MaximumHeightRequest="200"
+                                        Style="{StaticResource CardView}"
+                                        WidthRequest="200">
+                                        <Frame.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding Status}"
+                                                TargetType="Frame"
+                                                Value="Completed">
+                                                <Setter Property="Background" Value="{StaticResource Completed}" />
+                                            </DataTrigger>
+                                            <DataTrigger
+                                                Binding="{Binding Status}"
+                                                TargetType="Frame"
+                                                Value="Created">
+                                                <Setter Property="Background" Value="{StaticResource Created}" />
+                                            </DataTrigger>
+                                            <DataTrigger
+                                                Binding="{Binding Status}"
+                                                TargetType="Frame"
+                                                Value="In Progress">
+                                                <Setter Property="Background" Value="{StaticResource In Progress}" />
+                                            </DataTrigger>
+                                            <DataTrigger
+                                                Binding="{Binding Status}"
+                                                TargetType="Frame"
+                                                Value="Overdue">
+                                                <Setter Property="Background" Value="{StaticResource Overdue}" />
+                                            </DataTrigger>
+                                        </Frame.Triggers>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:HomePageViewModel}}, Path=GoToGoalDetailCommand}" CommandParameter="{Binding .}" />
+                                        </Frame.GestureRecognizers>
+
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Padding="10"
+                                            VerticalOptions="Start">
+                                            <Label
+                                                HorizontalOptions="StartAndExpand"
+                                                Style="{StaticResource LargeLabel}"
+                                                Text="{Binding GoalName}" />
+                                            <Label
+                                                Padding="5"
+                                                HorizontalOptions="CenterAndExpand"
+                                                Style="{StaticResource SmallLabel}"
+                                                Text="{Binding GoalDescription}" />
+                                        </StackLayout>
+
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+
+                </StackLayout>
+            </Frame>
+
+            <!--  Bottom Section: Mentors  -->
+            <Frame Margin="10">
+                <StackLayout>
+                    <Label
+                        Margin="0,5"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="Mentors" />
+
+                    <!--  CollectionView for Mentors  -->
+                    <CollectionView
+                        Grid.ColumnSpan="2"
+                        Background="Transparent"
+                        ItemsLayout="HorizontalList"
+                        ItemsSource="{Binding Mentors}"
+                        SelectionMode="None">
+                        <CollectionView.EmptyView>
+                            <Label
+                                Padding="10"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource LargeLabel}"
+                                Text="No Mentors Found"
+                                VerticalOptions="Center" />
+                        </CollectionView.EmptyView>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:UserProfile">
+                                <Grid Padding="10">
+                                    <Frame
+                                        Padding="0"
+                                        HeightRequest="200"
+                                        Style="{StaticResource CardView}"
+                                        WidthRequest="200">
+                                        <Frame.GestureRecognizers>
+                                            <!--<TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:HomePageViewModel}}, Path=GoToGoalDetailCommand}" CommandParameter="{Binding .}" />-->
+                                        </Frame.GestureRecognizers>
+                                        <Grid Padding="0" RowDefinitions="Auto, Auto">
+                                            <Image
+                                                Grid.Row="0"
+                                                Margin="5,5,20,5"
+                                                Aspect="AspectFill"
+                                                HeightRequest="100"
+                                                Source="user.png"
+                                                WidthRequest="100" />
+                                            <StackLayout
+                                                Grid.Row="1"
+                                                Padding="10"
+                                                VerticalOptions="Start">
+                                                <Label HorizontalOptions="CenterAndExpand" Style="{StaticResource MediumLabel}">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0} {1}">
+                                                            <Binding Path="FirstName" />
+                                                            <Binding Path="LastName" />
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    Style="{StaticResource SmallLabel}"
+                                                    Text="{Binding JobTitle}" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
